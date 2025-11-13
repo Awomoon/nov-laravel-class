@@ -6,9 +6,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/home', [PageController::class, 'home']);
-// Route::get('/contact', [PageController::class, 'contact']);
 
+// Controller Routes
+Route::get('/home', [PageController::class, 'home']);
+Route::get('/contact', [PageController::class, 'contact']);
+Route::get('/services', [PageController::class, 'services']);
+
+
+// Route
 Route::get('/about', function(){
-  return view('about', ['name' => 'Raphael','age' => 23]);
+  return view('about');
 });
+

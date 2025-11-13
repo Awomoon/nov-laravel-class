@@ -24,4 +24,14 @@ class PageController extends Controller
      $phone = '09034543433';
      return view('contact', ['email' => $email, 'phone' => $phone]);
     }
+
+    public function services()
+    {
+      $services = [
+          'Web Development',
+          'SEO Optimization',
+          'Digital Marketing',
+      ];
+      return view('services', ['services' => $services]);
+    }
 }
