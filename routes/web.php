@@ -1,17 +1,17 @@
 <?php
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
-
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\Http\Controllers\PostController;
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 
 // Controller Routes
-Route::get('/home', [PageController::class, 'home']);
+Route::get('/', [PageController::class, 'home']);
 Route::get('/contact', [PageController::class, 'contact']);
 Route::get('/services', [PageController::class, 'services']);
-
+Route::resource('/posts', PostController::class);
 
 // Route
 Route::get('/about', function(){
