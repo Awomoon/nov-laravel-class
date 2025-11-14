@@ -1,28 +1,14 @@
 @extends('layouts.app')
 
-@section('title', 'Create Post')
+@section('title', 'Edit Post')
 
 @section('content')
 
-<h1 class="my-4">Create New Post</h1>
-<form method="POST" action="{{ route('posts.store') }}">
-    @csrf
+<h1 class="my-4">Edit Post: {{ $post->title }}</h1>
 
-    <div class="mb-3">
-        <label for="authorInput" class="form-label">Author</label>
-        <input
-            type="text"
-            name="author"
-            id="authorInput"
-            class="form-control @error('author') is-invalid @enderror"
-            value="{{ old('author') }}"
-        >
-        @error('author')
-            <div class="invalid-feedback">
-                {{ $message }}
-            </div>
-        @enderror
-    </div>
+<form method="POST" action="{{ route('posts.update', $post->id) }}">
+    @csrf
+    @method('PUT')
 
     <div class="mb-3">
         <label for="titleInput" class="form-label">Title</label>
@@ -31,7 +17,7 @@
             name="title"
             id="titleInput"
             class="form-control @error('title') is-invalid @enderror"
-            value="{{ old('title') }}"
+            value="{{ old('title', $post->title) }}"
         >
         @error('title')
             <div class="invalid-feedback">
@@ -47,7 +33,7 @@
             id="contentInput"
             class="form-control @error('content') is-invalid @enderror"
             rows="5"
-        >{{ old('content') }}</textarea>
+        >{{ old('content', $post->content) }}</textarea>
         @error('content')
             <div class="invalid-feedback">
                 {{ $message }}
@@ -55,7 +41,9 @@
         @enderror
     </div>
 
-    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="submit" class="btn btn-primary">Update Post</button>
+
+    <a href="{{ route('posts.show', $post) }}" class="btn btn-secondary ms-2">Cancel</a>
 </form>
 
 @endsection
